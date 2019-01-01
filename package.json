@@ -9,6 +9,7 @@
     "react-scripts": "1.1.4"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "history": "^4.7.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -20,6 +21,11 @@
     "redux-devtools-extension": "^2.13.5",
     "redux-thunk": "^2.3.0",
     "sanitize.css": "^6.0.0"
+  },
+  "proxy": {
+    "/api": {
+      "target": "http://127.0.0.1:4000"
+    }
   },
   "scripts": {
     "start": "react-scripts start",
