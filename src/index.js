@@ -5,6 +5,7 @@ import { ConnectedRouter } from "react-router-redux";
 import store, { history } from "./store";
 import App from "./containers/app";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 import "sanitize.css/sanitize.css";
 import "./index.css";
 

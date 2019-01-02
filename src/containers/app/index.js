@@ -1,20 +1,33 @@
 import React from "react";
-import { Route, Link } from "react-router-dom";
+import { Route } from "react-router-dom";
 import Home from "../home";
 import About from "../about";
+import Auth from "../auth";
+import { Container, Nav, NavItem, NavLink } from "reactstrap";
 
 const App = () => (
-  <div>
-    <header>
-      <Link to="/">Home</Link>
-      <Link to="/about-us">About</Link>
-    </header>
+  <Container>
+    <hr />
+    <Nav>
+      <NavItem>
+        <NavLink href="/">Home</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="/about-us">About</NavLink>
+      </NavItem>
+      <NavItem>
+        <NavLink href="/auth">Auth</NavLink>
+      </NavItem>
+    </Nav>
+
+    <hr />
 
     <main>
       <Route exact path="/" component={Home} />
       <Route exact path="/about-us" component={About} />
+      <Route exact path="/auth" component={Auth} />
     </main>
-  </div>
+  </Container>
 );
 
 export default App;
