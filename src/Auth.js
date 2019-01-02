@@ -2,17 +2,13 @@ import React from "react";
 import axios from "axios";
 
 export default class Auth extends React.Component {
-  constructor(props) {
-    super(props);
+  state = {
+    userName: "",
+    password: "",
+    result: ""
+  };
 
-    this.state = {
-      userName: "",
-      password: "",
-      result: ""
-    };
-  }
-
-  register(e) {
+  register = e => {
     e.preventDefault();
     axios
       .post("/api/auth/register", {
@@ -23,9 +19,9 @@ export default class Auth extends React.Component {
         this.setState({ result: result.data.message });
       })
       .catch(error => console.error(error));
-  }
+  };
 
-  login(e) {
+  login = e => {
     e.preventDefault();
     axios
       .post("/api/auth/login", {
@@ -36,14 +32,12 @@ export default class Auth extends React.Component {
         this.setState({ result: result.data.message });
       })
       .catch(error => console.error(error));
-  }
-
-  userNameChanged = e => {
-    this.setState({ userName: e.target.value });
   };
 
-  passwordChanged = e => {
-    this.setState({ password: e.target.value });
+  handleInputChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   };
 
   render() {
@@ -53,22 +47,24 @@ export default class Auth extends React.Component {
           <label htmlFor="userNameInput">User name</label>
           <input
             id="userNameInput"
+            name="userName"
             type="text"
             className="form-control"
             placeholder="Enter username"
             value={this.state.userName}
-            onChange={event => this.userNameChanged(event)}
+            onChange={this.handleInputChange}
           />
         </div>
         <div className="form-group">
           <label htmlFor="passwordInput">Password</label>
           <input
             id="passwordInput"
+            name="password"
             type="password"
             className="form-control"
             placeholder="Password"
             value={this.state.password}
-            onChange={event => this.passwordChanged(event)}
+            onChange={this.handleInputChange}
           />
           <small id="userName" className="form-text text-muted">
             {this.state.result}
@@ -77,15 +73,11 @@ export default class Auth extends React.Component {
         <button
           type="button"
           className="btn btn-success mr-2"
-          onClick={this.register.bind(this)}
+          onClick={this.register}
         >
           Register
         </button>
-        <button
-          type="button"
-          className="btn btn-light"
-          onClick={this.login.bind(this)}
-        >
+        <button type="button" className="btn btn-light" onClick={this.login}>
           Login
         </button>
       </form>
