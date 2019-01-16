@@ -1,37 +1,12 @@
 import React from "react";
 import axios from "axios";
+import connect from "react-redux/es/connect/connect";
 
-export default class Auth extends React.Component {
+export class Auth extends React.Component {
   state = {
     userName: "",
     password: "",
     result: ""
-  };
-
-  register = e => {
-    e.preventDefault();
-    axios
-      .post("/api/auth/register", {
-        username: this.state.userName,
-        password: this.state.password
-      })
-      .then(result => {
-        this.setState({ result: result.data.message });
-      })
-      .catch(error => console.error(error));
-  };
-
-  login = e => {
-    e.preventDefault();
-    axios
-      .post("/api/auth/login", {
-        username: this.state.userName,
-        password: this.state.password
-      })
-      .then(result => {
-        this.setState({ result: result.data.message });
-      })
-      .catch(error => console.error(error));
   };
 
   handleInputChange = e => {
@@ -73,14 +48,63 @@ export default class Auth extends React.Component {
         <button
           type="button"
           className="btn btn-success mr-2"
-          onClick={this.register}
+          onClick={e => {
+            this.props.register(e, this.state.userName, this.state.password);
+          }}
         >
           Register
         </button>
-        <button type="button" className="btn btn-light" onClick={this.login}>
+        <button
+          type="button"
+          className="btn btn-light"
+          onClick={e => {
+            this.props.login(e, this.state.userName, this.state.password);
+          }}
+        >
           Login
         </button>
       </form>
     );
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    register: (event, user, password) => {
+      event.preventDefault();
+      axios
+        .post("/api/auth/register", {
+          username: user,
+          password: password
+        })
+        .then(result => {
+          dispatch({
+            type: "REGISTER",
+            payload: result.data.message
+          });
+        })
+        .catch(error => console.error(error));
+    },
+
+    login: (event, user, password) => {
+      event.preventDefault();
+      axios
+        .post("/api/auth/login", {
+          username: user,
+          password: password
+        })
+        .then(result => {
+          dispatch({
+            type: "LOGIN",
+            payload: result.data.message
+          });
+        })
+        .catch(error => console.error(error));
+    }
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(Auth);
