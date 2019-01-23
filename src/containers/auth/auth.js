@@ -75,11 +75,9 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loginUser: user => dispatch(loginUser(user)),
-    registerUser: user => dispatch(registerUser(user))
-  };
+const mapDispatchToProps = {
+  loginUser,
+  registerUser
 };
 
 export default connect(
