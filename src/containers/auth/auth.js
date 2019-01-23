@@ -9,11 +9,10 @@ class Auth extends Component {
     result: ""
   };
 
-  handleInputChange = e => {
+  handleInputChange = e =>
     this.setState({
       [e.target.name]: e.target.value
     });
-  };
 
   register = e => {
     e.preventDefault();
