@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Link } from "react-router-dom";
-import Auth from "../auth/Auth";
+import Auth from "containers/auth/Auth";
 
 const App = () => (
   <div>

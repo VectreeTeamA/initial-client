@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware, combineReducers } from "redux";
 import { reducer as formReducer } from "redux-form";
-import authReducer from "./reducers/authReducer";
+import authReducer from "reducers/authReducer";
 import thunk from "redux-thunk";
 
 import createHistory from "history/createBrowserHistory";

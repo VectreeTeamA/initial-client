@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { registerUser } from "../../store/actions/authAction";
-import SimpleForm from "./SimpleForm";
+import { registerUser } from "actions/authAction";
+import SimpleForm from "containers/auth/SimpleForm";
 import axios from "axios";
 
 class Auth extends Component {

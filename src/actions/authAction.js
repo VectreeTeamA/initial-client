@@ -1,45 +1,65 @@
 import axios from "axios";
 
-export const loginUser = user => async (dispatch, getState) => {
-  const { userName, password } = user;
-
+export const loginUser = ({ userName, password }) => async (
+  dispatch,
+  getState
+) => {
   try {
     const result = await axios.post("/api/auth/login", {
       username: userName,
-      password: password
+      password
     });
 
     dispatch({
       type: "LOGIN",
       payload: {
         userName: userName,
-        password: password,
+        password,
         result: result.data.message
       }
     });
   } catch (error) {
     console.error(error);
+
+    dispatch({
+      type: "LOGIN",
+      payload: {
+        userName: userName,
+        password,
+        result: error.message
+      }
+    });
   }
 };
 
-export const registerUser = user => async (dispatch, getState) => {
-  const { userName, password } = user;
-
+export const registerUser = ({ userName, password }) => async (
+  dispatch,
+  getState
+) => {
   try {
     const result = await axios.post("/api/auth/register", {
       username: userName,
-      password: password
+      password
     });
 
     dispatch({
       type: "REGISTER",
       payload: {
         userName: userName,
-        password: password,
+        password,
         result: result.data.message
       }
     });
   } catch (error) {
     console.error(error);
+
+    dispatch({
+      type: "REGISTER",
+      payload: {
+        userName: userName,
+        password,
+        result: error.message
+      }
+    });
   }
 };
