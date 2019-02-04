@@ -19,8 +19,6 @@ export const loginUser = ({ userName, password }) => async (
       }
     });
   } catch (error) {
-    console.error(error);
-
     dispatch({
       type: "LOGIN",
       payload: {
@@ -51,8 +49,6 @@ export const registerUser = ({ userName, password }) => async (
       }
     });
   } catch (error) {
-    console.error(error);
-
     dispatch({
       type: "REGISTER",
       payload: {
