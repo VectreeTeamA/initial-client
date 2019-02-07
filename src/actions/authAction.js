@@ -1,19 +1,19 @@
 import axios from "axios";
 
-export const loginUser = ({ userName, password }) => async (
+export const loginUser = ({ username, password }) => async (
   dispatch,
   getState
 ) => {
   try {
     const result = await axios.post("/api/auth/login", {
-      userName,
+      username,
       password
     });
 
     dispatch({
       type: "LOGIN",
       payload: {
-        userName,
+        username,
         password,
         result: result.data.message
       }
@@ -25,20 +25,20 @@ export const loginUser = ({ userName, password }) => async (
   }
 };
 
-export const registerUser = ({ userName, password }) => async (
+export const registerUser = ({ username, password }) => async (
   dispatch,
   getState
 ) => {
   try {
     const result = await axios.post("/api/auth/register", {
-      username: userName,
+      username,
       password
     });
 
     dispatch({
       type: "REGISTER",
       payload: {
-        userName,
+        username,
         password,
         result: result.data.message
       }

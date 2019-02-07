@@ -18,7 +18,7 @@ const templateForm = props => {
   return (
     <form className="mt-3" onSubmit={handleSubmit}>
       <Field
-        name="userName"
+        name="username"
         type="text"
         label="First Name"
         placeholder="First Name"
