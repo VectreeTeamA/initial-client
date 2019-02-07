@@ -13,19 +13,14 @@ export const loginUser = ({ userName, password }) => async (
     dispatch({
       type: "LOGIN",
       payload: {
-        userName: userName,
+        userName,
         password,
         result: result.data.message
       }
     });
   } catch (error) {
     dispatch({
-      type: "LOGIN",
-      payload: {
-        userName: userName,
-        password,
-        result: error.message
-      }
+      type: "LOGIN_ERROR"
     });
   }
 };
@@ -43,19 +38,14 @@ export const registerUser = ({ userName, password }) => async (
     dispatch({
       type: "REGISTER",
       payload: {
-        userName: userName,
+        userName,
         password,
         result: result.data.message
       }
     });
   } catch (error) {
     dispatch({
-      type: "REGISTER",
-      payload: {
-        userName: userName,
-        password,
-        result: error.message
-      }
+      type: "REGISTER_ERROR"
     });
   }
 };

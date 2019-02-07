@@ -54,7 +54,7 @@ const templateForm = props => {
 };
 
 const SimpleForm = reduxForm({
-  form: "simple"
+  form: "auth"
 })(templateForm);
 
 export default SimpleForm;

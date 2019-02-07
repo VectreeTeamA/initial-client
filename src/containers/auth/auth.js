@@ -11,11 +11,9 @@ class Auth extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  return {
-    user: state.auth
-  };
-};
+const mapStateToProps = state => ({
+  user: state.auth
+});
 
 const mapDispatchToProps = {
   registerUser
